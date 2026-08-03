@@ -106,16 +106,13 @@ def hypervolume_history(df, objective_cols=DEFAULT_OBJECTIVE_COLS, ref_point=Non
     return out
 
 
-def plot_hypervolume_history(df, mobo_end=17, random_end=300):
-    """Plot cumulative hypervolume, shading the MOBO vs. random-sampling phases."""
+def plot_hypervolume_history(df):
+    """Plot cumulative hypervolume history."""
     plt.figure(figsize=(8, 5))
     plt.plot(df["hypervolume"])
-    plt.axvspan(0, mobo_end, alpha=0.15, label="MOBO")
-    plt.axvspan(mobo_end + 1, random_end, alpha=0.15, label="Random sampling", color="orange")
     plt.title("Cumulative hypervolume history")
     plt.xlabel("Sample index")
     plt.ylabel("Cumulative hypervolume")
-    plt.legend()
     plt.show()
 
 

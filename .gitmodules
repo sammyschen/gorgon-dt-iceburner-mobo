@@ -1,0 +1,4 @@
+[submodule "mille-feuille"]
+	path = mille-feuille
+	url = https://github.com/sammyiserious/mille-feuille.git
+	branch = MOBO

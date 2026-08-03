@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iceburner"
+version = "0.1.0"
+description = "Analysis code for the Gorgon MOBO iceburner campaign: Pareto/hypervolume analysis, DT ice-geometry reconstruction, and surrogate scans."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn",
+    "torch",
+    "botorch",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyter", "nbconvert", "nbclient"]
+
+[tool.setuptools]
+packages = ["iceburner"]

@@ -7,3 +7,12 @@ venv/
 *.egg-info/
 build/
 dist/
+
+# SQLite runtime artifacts (recreated locally, never useful to commit)
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Scratch/local databases outside data/
+/*.db
+!/data/*.db

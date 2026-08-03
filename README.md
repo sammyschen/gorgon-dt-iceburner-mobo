@@ -190,6 +190,13 @@ checked:
   `iceburner/scaling.py`) is only exercised over the sampled current
   range (~20–60 MA) in this database; extrapolating it outside that range
   is unvalidated.
+- Ruiz et al.'s similarity scaling was derived for a different MagLIF
+  design-space region than this iceburner campaign explores. The scaling
+  exponents in `iceburner/scaling.py` are carried over as-is, but they
+  are not guaranteed to hold exactly outside the regime Ruiz et al.
+  studied — some of the reconstructed physical quantities (and anything
+  derived from them, e.g. DT ice thickness) may be less accurate for
+  designs that sit far from that regime.
 - Two inconsistencies were found in the pre-refactor code while
   consolidating it, which means the analysis this repo is based on had
   not been independently cross-checked before:

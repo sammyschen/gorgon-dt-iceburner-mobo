@@ -73,9 +73,11 @@ one parameter at a time.
 
    - **Current scaling.** The reference design (outer/inner liner
      radius, Be thickness, Π mass-loading, laser energy, fill-gas
-     density) is scaled with drive current using the similarity-scaling
-     relations from Ruiz et al. [ref] — see the
-     `REFERENCE_CURRENT_MA`/`ALPHA_*` constants and
+     density) is scaled with drive current using the MagLIF
+     similarity-scaling relations from Ruiz et al., *Exploring the
+     parameter space of MagLIF implosions using similarity scaling. II.
+     Current scaling* ([arXiv:2209.14911](https://arxiv.org/abs/2209.14911))
+     — see the `REFERENCE_CURRENT_MA`/`ALPHA_*` constants and
      `scaled_reference_values()` in `iceburner/scaling.py`. Each
      simulation's actual design is this reference design times a
      per-parameter multiplier (`f_laser`, `f_R_outer`, `f_Pi`, `f_Be`,
@@ -222,9 +224,13 @@ checked:
 
 ## References
 
-- Ruiz, D. E. et al. *[full citation needed — see TODO below]*. Source
-  of the current-scaling relations used to build the reference design in
-  `iceburner/scaling.py`.
+- Ruiz, D. E., Schmit, P. F., Yager-Elorriaga, D. A., Gomez, M. R., Weis,
+  M. R., Jennings, C. A., Harvey-Thompson, A. J., Knapp, P. F., Slutz,
+  S. A., Ampleford, D. J., Beckwith, K., Matzen, M. K. *Exploring the
+  parameter space of MagLIF implosions using similarity scaling. II.
+  Current scaling*. Physics of Plasmas (2023).
+  <https://arxiv.org/abs/2209.14911> — source of the current-scaling
+  relations used to build the reference design in `iceburner/scaling.py`.
 - Crilly, A. et al. *Automated simulation-based design via multi-fidelity
   active learning and optimisation for laser direct drive implosions*.
   <https://arxiv.org/abs/2508.20878>

@@ -68,9 +68,36 @@ one parameter at a time.
 
 1. **Simulate.** Gorgon MHD simulations of the capsule design, run across
    a 6D space of dimensionless multipliers on a similarity-scaled
-   reference design (the scaling law and its exponents live in
-   `iceburner/scaling.py`), driven by BoTorch-based MOBO plus
-   random-sampling exploration, recorded in a sqlite database.
+   reference design, driven by BoTorch-based MOBO plus random-sampling
+   exploration, recorded in a sqlite database.
+
+   - **Current scaling.** The reference design (outer/inner liner
+     radius, Be thickness, Π mass-loading, laser energy, fill-gas
+     density) is scaled with drive current using the similarity-scaling
+     relations from Ruiz et al. [ref] — see the
+     `REFERENCE_CURRENT_MA`/`ALPHA_*` constants and
+     `scaled_reference_values()` in `iceburner/scaling.py`. Each
+     simulation's actual design is this reference design times a
+     per-parameter multiplier (`f_laser`, `f_R_outer`, `f_Pi`, `f_Be`,
+     `f_rho`), plus the drive current itself as a direct sixth
+     parameter.
+   - **Design space / domain.** The multiplier bounds sampled by MOBO
+     are defined in the HPC simulation pipeline's domain config (not
+     part of this repo — it lives with the Gorgon job submission
+     scripts on the HPC side), as a JSON block of `names`,
+     `lower_bounds`, `upper_bounds`, and `steps`:
+
+     | parameter  | lower bound | upper bound |
+     |------------|-------------|-------------|
+     | `f_laser`  | 0.5         | 1.5         |
+     | `f_R_outer`| 0.9         | 1.1         |
+     | `f_Pi`     | 0.98        | 1.02        |
+     | `f_Be`     | 0.5         | 1.5         |
+     | `f_rho`    | 0.5         | 1.5         |
+     | `current`  | 20          | 60 (MA)     |
+
+     `steps` are all `0.0` for every parameter, i.e. MOBO samples
+     continuously within each bound rather than on a fixed grid.
 2. **Clean.** Filter simulations with non-finite or physically impossible
    objective values before any downstream analysis
    (`iceburner/database.py`, `iceburner/surrogate.py`).
@@ -195,6 +222,9 @@ checked:
 
 ## References
 
+- Ruiz, D. E. et al. *[full citation needed — see TODO below]*. Source
+  of the current-scaling relations used to build the reference design in
+  `iceburner/scaling.py`.
 - Crilly, A. et al. *Automated simulation-based design via multi-fidelity
   active learning and optimisation for laser direct drive implosions*.
   <https://arxiv.org/abs/2508.20878>
